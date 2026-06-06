@@ -1,0 +1,17 @@
+@page "/products/{Id}"
+@inject ProductDb ProductDb
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    Product? product;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(Id))
+        {
+            product = ProductDb.Data.FirstOrDefault(p => p.Id == Id);
+        }
+    }
+}

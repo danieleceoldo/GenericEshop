@@ -1,0 +1,32 @@
+@page "/products"
+@inject ProductDb ProductDb
+
+
+<ul>
+    @if (products.Count == 0)
+    {
+        <li>No products available.</li>
+    }
+    else {
+        @foreach (var product in products)
+        {
+            <h3>@product.Name</h3>
+            <p>@product.Description</p>
+            <p>Price: @product.Price.ToString("C")</p>
+            <NavLink href="/products/product.Id">
+                <img src="@product.ImageUrl" alt="@product.Name" />
+            </NavLink>
+
+        }
+    }
+</ul>
+
+
+@code {
+    private List<Product> products { get; set; } = new List<Product>();
+
+    protected override void OnInitialized()
+    {
+        products = ProductDb.Data;
+    }
+}

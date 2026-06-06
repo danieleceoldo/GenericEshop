@@ -1,10 +1,15 @@
 using GenericEshop.Components;
+using GenericEshop.Models;
+using GenericEshop.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+//builder.Services.AddRazorPages();
+//builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<ProductDb>();
 
 var app = builder.Build();
 
