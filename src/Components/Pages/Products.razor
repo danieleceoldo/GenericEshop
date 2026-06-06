@@ -13,10 +13,9 @@
             <h3>@product.Name</h3>
             <p>@product.Description</p>
             <p>Price: @product.Price.ToString("C")</p>
-            <NavLink href="/products/product.Id">
+            <NavLink href="@($"/products/{product.Id}")">
                 <img src="@product.ImageUrl" alt="@product.Name" />
             </NavLink>
-
         }
     }
 </ul>

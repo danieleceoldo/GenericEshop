@@ -1,5 +1,4 @@
 using GenericEshop.Components;
-using GenericEshop.Models;
 using GenericEshop.Shared;
 
 var builder = WebApplication.CreateBuilder(args);

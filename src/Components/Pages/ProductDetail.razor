@@ -1,6 +1,19 @@
 @page "/products/{Id}"
 @inject ProductDb ProductDb
 
+<h1>Product Detail</h1>
+@if (product == null)
+{
+    <p>Product not found.</p>
+}
+else
+{
+    <p><strong>@product.Name</strong></p>
+    <p>@product.Description</p>
+    <p>Price: @product.Price</p>
+    <img src="@product.ImageUrl" alt="@product.Name"/>
+}
+
 @code {
     [Parameter]
     public string? Id { get; set; }
