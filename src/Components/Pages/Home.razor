@@ -1,32 +1,27 @@
 ﻿@page "/"
 
-<PageTitle>Generic eShop</PageTitle>
 
-<div>
+<p>Welcome to the Generic eShop! Explore our products and find what you need.</p>
 
-    <h1>Generic eShop</h1>
-
-    <p>Welcome to the Generic eShop! Explore our products and find what you need.</p>
-
-    <ul>
-        @if (products.Count == 0)
+<ul>
+    @if (products.Count == 0)
+    {
+        <li>No products available.</li>
+    }
+    else {
+        @foreach (var product in products)
         {
-            <li>No products available.</li>
+            <NavLink href="/products/product.Id">
+                <h3>@product.Name</h3>
+            </NavLink>
+            <p>@product.Description</p>
+            <p>Price: @product.Price.ToString("C")</p>
+            <img src="@product.ImageUrl" alt="@product.Name" />
         }
-        else {
-            @foreach (var product in products)
-            {
-                <li>
-                    <h3>@product.Name</h3>
-                    <p>@product.Description</p>
-                    <p>Price: @product.Price.ToString("C")</p>
-                    <img src="@product.ImageUrl" alt="@product.Name" />
-                </li>
-            }
-        }
-    </ul>
+    }
+</ul>
 
-</div>
+<p>Check out our latest products and enjoy shopping!</p>
 
 @code {
     List<Product> products = new List<Product>();
@@ -35,7 +30,7 @@
     {
         products.Add(new Product
         {
-            Code = 1,
+            Id = 1,
             Name = "Product 1",
             Price = 19.99m,
             Description = "This is the first product.",
@@ -44,7 +39,7 @@
 
         products.Add(new Product
         {
-            Code = 2,
+            Id = 2,
             Name = "Product 2",
             Price = 29.99m,
             Description = "This is the second product.",
@@ -53,7 +48,7 @@
 
         products.Add(new Product
         {
-            Code = 3,
+            Id = 3,
             Name = "Product 3",
             Price = 39.99m,
             Description = "This is the third product.",

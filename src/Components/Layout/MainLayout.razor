@@ -1,6 +1,28 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+<PageTitle>Generic eShop</PageTitle>
+
+<div>
+
+    <header>
+        <NavLink href="/">
+            <h1>Generic eShop</h1>
+        </NavLink>
+        <NavLink href="/contacts">Contacts</NavLink>
+        <NavLink href="/company">About Us</NavLink>
+        <NavLink href="/products">Products</NavLink>
+        <NavLink href="/cart">Cart</NavLink>
+    </header>
+
+    <main>
+        @Body
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Generic eShop. All rights reserved.</p>
+    </footer>
+
+</div>
 
 <div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.
