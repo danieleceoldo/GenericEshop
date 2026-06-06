@@ -1,0 +1,64 @@
+﻿@page "/"
+
+<PageTitle>Generic eShop</PageTitle>
+
+<div>
+
+    <h1>Generic eShop</h1>
+
+    <p>Welcome to the Generic eShop! Explore our products and find what you need.</p>
+
+    <ul>
+        @if (products.Count == 0)
+        {
+            <li>No products available.</li>
+        }
+        else {
+            @foreach (var product in products)
+            {
+                <li>
+                    <h3>@product.Name</h3>
+                    <p>@product.Description</p>
+                    <p>Price: @product.Price.ToString("C")</p>
+                    <img src="@product.ImageUrl" alt="@product.Name" />
+                </li>
+            }
+        }
+    </ul>
+
+</div>
+
+@code {
+    List<Product> products = new List<Product>();
+
+    protected override void OnInitialized()
+    {
+        products.Add(new Product
+        {
+            Code = 1,
+            Name = "Product 1",
+            Price = 19.99m,
+            Description = "This is the first product.",
+            ImageUrl = "https://via.placeholder.com/150"
+        });
+
+        products.Add(new Product
+        {
+            Code = 2,
+            Name = "Product 2",
+            Price = 29.99m,
+            Description = "This is the second product.",
+            ImageUrl = "https://via.placeholder.com/150"
+        });
+
+        products.Add(new Product
+        {
+            Code = 3,
+            Name = "Product 3",
+            Price = 39.99m,
+            Description = "This is the third product.",
+            ImageUrl = "https://via.placeholder.com/150"
+        });
+    }
+
+}
