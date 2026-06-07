@@ -1,18 +1,35 @@
 @page "/products/{Id}"
+@rendermode InteractiveServer
 @inject ProductDb ProductDb
+@inject GenericEshop.Models.Cart Cart_
 
-<h1>Product Detail</h1>
+<h2>Product Detail</h2>
+
 @if (product == null)
 {
     <p>Product not found.</p>
 }
 else
 {
-    <p><strong>@product.Name</strong></p>
-    <p>@product.Description</p>
-    <p>Price: @product.Price</p>
-    <img src="@product.ImageUrl" alt="@product.Name"/>
+    <div>
+        <p><strong>@product.Name</strong></p>
+        <p>@product.Description</p>
+        <p>Price: @product.Price</p>
+        <img src="@product.ImageUrl" alt="@product.Name"/>
+    </div>
+    <div>
+        <button @onclick="() => Cart_.products.Add(product)">Add to Cart</button>
+    </div>
+    <div>
+        @if (Cart_.products.Contains(product))
+        {
+            <p>Product is in the cart.</p>
+        }
+    </div>
 }
+<div>
+    <NavLink href="/products">Back to Products</NavLink>
+</div>
 
 @code {
     [Parameter]

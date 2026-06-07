@@ -1,0 +1,22 @@
+@page "/cart"
+@rendermode InteractiveServer
+@inject GenericEshop.Models.Cart Cart_
+
+<h2>Shopping Cart</h2>
+
+@if (Cart_.products.Any())
+{
+    <ul>
+        @foreach (var product in Cart_.products)
+        {
+            <li>
+                <h3>@product.Name</h3>
+                <p>Price: @product.Price.ToString("C")</p>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Your shopping cart is currently empty.</p>
+}

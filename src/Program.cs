@@ -1,5 +1,6 @@
 using GenericEshop.Components;
 using GenericEshop.Shared;
+using GenericEshop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddSingleton<ProductDb>();
+builder.Services.AddScoped<Cart>();
 
 var app = builder.Build();
 

@@ -1,6 +1,9 @@
 @page "/products"
+@rendermode InteractiveServer
+
 @inject ProductDb ProductDb
 
+<h2>Products</h2>
 
 <ul>
     @if (products.Count == 0)
