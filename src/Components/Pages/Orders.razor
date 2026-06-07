@@ -1,0 +1,26 @@
+@page "/orders"
+@inject OrderDb OrderDb
+
+<h2>Orders</h2>
+
+@if (OrderDb.Data.Any())
+{
+    <ul>
+        @foreach (var order in OrderDb.Data)
+        {
+            <li>
+                <h3>Order @order.GetHashCode()</h3>
+                <ul>
+                    @foreach (var product in order.products)
+                    {
+                        <li>@product.Name - @product.Price.ToString("C")</li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No orders have been placed yet.</p>
+}

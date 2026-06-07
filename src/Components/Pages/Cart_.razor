@@ -1,13 +1,14 @@
 @page "/cart"
 @rendermode InteractiveServer
-@inject GenericEshop.Models.Cart Cart_
+@inject Cart Cart
+
 
 <h2>Shopping Cart</h2>
 
-@if (Cart_.products.Any())
+@if (Cart.products.Any())
 {
     <ul>
-        @foreach (var product in Cart_.products)
+        @foreach (var product in Cart.products)
         {
             <li>
                 <h3>@product.Name</h3>
@@ -20,3 +21,10 @@ else
 {
     <p>Your shopping cart is currently empty.</p>
 }
+
+<div>
+    <NavLink href="/products">Continue Shopping</NavLink>
+</div>
+<div>
+    <NavLink href="/checkout">Proceed to Checkout</NavLink>
+</div>

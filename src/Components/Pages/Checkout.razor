@@ -1,0 +1,39 @@
+@page "/checkout"
+@rendermode InteractiveServer
+@inject Cart Cart
+@inject OrderDb OrderDb
+
+<h2>Checkout</h2>
+
+@if (Cart.products.Any())
+{
+    <div>
+        <h3>Items in your cart:</h3>
+        <ul>
+            @foreach (var product in Cart.products)
+            {
+                <li>
+                    <h3>@product.Name</h3>
+                    <p>Price: @product.Price.ToString("C")</p>
+                </li>
+            }
+        </ul>
+    </div>
+    <div>
+        <button @onclick="() =>
+            {
+                var order = new Cart();
+                order.products.AddRange(Cart.products);
+                OrderDb.Data.Add(order);
+                Cart.products.Clear();
+            }">Place Order</button>
+    </div>
+}
+else
+{
+    <p>Your shopping cart is currently empty.</p>
+}
+
+<div>
+    <NavLink href="/cart">Back to Cart</NavLink>
+</div>

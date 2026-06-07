@@ -1,7 +1,7 @@
 @page "/products/{Id}"
 @rendermode InteractiveServer
 @inject ProductDb ProductDb
-@inject GenericEshop.Models.Cart Cart_
+@inject Cart Cart
 
 <h2>Product Detail</h2>
 
@@ -18,10 +18,10 @@ else
         <img src="@product.ImageUrl" alt="@product.Name"/>
     </div>
     <div>
-        <button @onclick="() => Cart_.products.Add(product)">Add to Cart</button>
+        <button @onclick="() => Cart.products.Add(product)">Add to Cart</button>
     </div>
     <div>
-        @if (Cart_.products.Contains(product))
+        @if (Cart.products.Contains(product))
         {
             <p>Product is in the cart.</p>
         }
