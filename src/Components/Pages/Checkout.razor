@@ -5,35 +5,40 @@
 
 <h2>Checkout</h2>
 
-@if (Cart.products.Any())
+@if (Cart.Items.Any())
 {
     <div>
         <h3>Items in your cart:</h3>
         <ul>
-            @foreach (var product in Cart.products)
+            @foreach (var item in Cart.Items)
             {
                 <li>
-                    <h3>@product.Name</h3>
-                    <p>Price: @product.Price.ToString("C")</p>
+                    <h3>@item.Product?.Name</h3>
+                    <p>Price: @item.Product?.Price.ToString("C")</p>
+                    <p>Quantity: @item.Quantity</p>
+                    <p>Total: @item.TotalPrice.ToString("C")</p>
                 </li>
             }
         </ul>
+        <p><strong>Cart Total: @Cart.TotalPrice.ToString("C")</strong></p>
     </div>
     <div>
         <button @onclick="() =>
             {
                 var order = new Cart();
-                order.products.AddRange(Cart.products);
+                order.Items.AddRange(Cart.Items);
                 OrderDb.Data.Add(order);
-                Cart.products.Clear();
-            }">Place Order</button>
+                Cart.Items.Clear();
+            }">Order Now!</button>
     </div>
+    <nav>
+        <NavLink href="/cart">Back to Cart</NavLink>
+    </nav>
 }
 else
 {
     <p>Your shopping cart is currently empty.</p>
+    <nav>
+        <NavLink href="/products">Continue Shopping</NavLink>
+    </nav>
 }
-
-<div>
-    <NavLink href="/cart">Back to Cart</NavLink>
-</div>

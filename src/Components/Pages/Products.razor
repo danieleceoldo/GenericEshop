@@ -6,19 +6,21 @@
 <h2>Products</h2>
 
 <ul>
-    @if (products.Count == 0)
+    @if (products == null || products.Count == 0)
     {
         <li>No products available.</li>
     }
     else {
         @foreach (var product in products)
         {
-            <h3>@product.Name</h3>
-            <p>@product.Description</p>
-            <p>Price: @product.Price.ToString("C")</p>
-            <NavLink href=@($"/products/{product.Id}")>
-                <img src="@product.ImageUrl" alt="@product.Name" />
-            </NavLink>
+            <li>
+                <NavLink href=@($"/products/{product.Id}")>
+                    <p><strong>@product.Name</strong></p>
+                    <img src="@product.ImageUrl" alt="@product.Name" />
+                </NavLink>
+                <p>@product.Description</p>
+                <p>Price: @product.Price.ToString("C")</p>
+            </li>
         }
     }
 </ul>

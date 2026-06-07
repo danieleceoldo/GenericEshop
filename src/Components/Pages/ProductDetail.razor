@@ -18,24 +18,30 @@ else
         <img src="@product.ImageUrl" alt="@product.Name"/>
     </div>
     <div>
-        <button @onclick="() => Cart.products.Add(product)">Add to Cart</button>
+        <button @onclick="() => quantity = Math.Max(1, quantity - 1)">-</button>
+        <span>@quantity</span>
+        <button @onclick="() => quantity = Math.Min(4, quantity + 1)">+</button>
     </div>
     <div>
-        @if (Cart.products.Contains(product))
-        {
-            <p>Product is in the cart.</p>
-        }
+        <button @onclick="() => Cart.AddItem(product, quantity)">Add to Cart</button>
     </div>
+    @if (Cart.Items.Any(item => item.Product == product))
+    {
+            <p>Number of item(s) of this product in the cart: @Cart.Items.First(item => item.Product == product).Quantity item(s) .</p>
+    }
 }
-<div>
+
+<nav>
+    <NavLink href="/cart">Go to Cart</NavLink>
     <NavLink href="/products">Back to Products</NavLink>
-</div>
+</nav>
 
 @code {
     [Parameter]
     public string? Id { get; set; }
 
     Product? product;
+    uint quantity = 1;
 
     protected override async Task OnParametersSetAsync()
     {
